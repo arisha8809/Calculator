@@ -1,0 +1,113 @@
+<!-- 
+     Arisha Gupta
+     23112003 4Bsc Ds 
+     8 January 2026
+
+     Create a calculator
+               
+--> 
+               
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator</title>
+        <style>
+            body{
+                text-align: center;
+                background-color: rgb(21, 7, 2);
+            }
+            table{
+                margin-top: 50px;
+                border: 1px solid rgb(246, 235, 235);
+                margin-left: auto;
+                margin-right: auto;
+                }
+            #screen{
+                border: 1px solid ;
+                background-color: antiquewhite;
+                border-radius: 6px;
+            }
+            button{
+                background-color: antiquewhite;
+                font-size: larger;
+                padding: 8px;
+                border-radius: 8px;
+            }
+            h1{
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>CALCULTOR</h1>
+        <table>
+            <tr>
+                <td colspan = "3" id="screen"></td>
+                <td><button onclick="clearScreen()" >C</button></td>
+            </tr>
+            <tr>
+                <td ><button onclick="clickHandler('7')">7</button></td>
+                <td><button onclick="clickHandler('8')">8</button></td>
+                <td><button onclick="clickHandler('9')">9</button></td>
+                <td><button onclick="clickHandler('/')">/</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="clickHandler('4')">4</button></td>
+                <td><button onclick="clickHandler('5')">5</button></td>
+                <td><button onclick="clickHandler('6')">6</button></td>
+                <td><button onclick="clickHandler('*')">*</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="clickHandler('1')">1</button></td>
+                <td><button onclick="clickHandler('2')">2</button></td>
+                <td><button onclick="clickHandler('3')">3</button></td>
+                <td><button onclick="clickHandler('-')">-</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="clickHandler('0')">0</button></td>
+                <td><button onclick="clickHandler('.')">.</button></td>
+                <td><button onclick="clickHandler('+')">+</button></td>
+                <td><button onclick="calculateExpression('=')">=</button></td>
+            </tr>
+        </table>
+
+        <script>
+            function clickHandler(value){
+                if (value=='+' || value=='-' || value=='*' || value=='/'){
+                    value = " "+value+" ";
+                }
+                var screenContent = document.getElementById("screen");
+                screenContent.innerHTML = screenContent.innerHTML + value;
+            }
+            
+            function calculateExpression(){
+                var expression = document.getElementById("screen").innerHTML;
+                console.log("EXPRESSION: " + expression);
+
+                var expressionArray = expression.split(" ");
+                console.log("EXPRESSION ARRAY: " + expressionArray);
+            
+                var result = 0;
+                if (expressionArray[1] =='+'){
+                    result = parseInt(expressionArray[0]) + parseInt(expressionArray[2]);
+                }
+                else if (expressionArray[1] == '-'){
+                    result = parseInt(expressionArray[0]) - parseInt(expressionArray[2]);
+                }
+                else if (expressionArray[1] == '*'){
+                    result = parseInt(expressionArray[0]) * parseInt(expressionArray[2]);
+                }
+                else if (expressionArray[1] == '/'){
+                    result = parseInt(expressionArray[0]) / parseInt(expressionArray[2]);
+                }
+
+                document.getElementById("screen").innerHTML = result;
+            }
+
+            function clearScreen(){
+                document.getElementById("screen").innerHTML = "";
+            }
+        </script>
+
+    </body>
+</html>
